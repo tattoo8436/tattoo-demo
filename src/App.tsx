@@ -41,7 +41,7 @@ function App() {
       const res = await fetch("/data/AirportData.json");
       const data: IAirport[] = await res.json();
 
-      const size = 50;
+      const size = 100;
       const loopCount = Math.ceil(data.length / size);
       const translatedData: IAirport[] = [];
 
