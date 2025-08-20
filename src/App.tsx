@@ -17,8 +17,7 @@ interface IAirport {
 }
 
 const client = new OpenAI({
-  apiKey:
-    import.meta.env.VITE_API_KEY,
+  apiKey: import.meta.env.VITE_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
@@ -42,7 +41,7 @@ function App() {
       const res = await fetch("/data/AirportData.json");
       const data: IAirport[] = await res.json();
 
-      const size = 500;
+      const size = 50;
       const loopCount = Math.ceil(data.length / size);
       const translatedData: IAirport[] = [];
 
@@ -65,7 +64,8 @@ function App() {
         });
 
         const resAI: any[] = JSON.parse(
-          resAIRaw.choices[0].message.content?.split("\n")?.at(1) ?? "[]"
+          resAIRaw.choices[0].message.content?.replaceAll("\n", "")?.slice(7, -3) ??
+            "[]"
         );
         resAI.forEach((item, index) => {
           translatedData.push({
@@ -73,7 +73,6 @@ function App() {
             name_translations: item.name_translations,
           });
         });
-
       }
 
       setAirports(translatedData);
@@ -94,9 +93,6 @@ function App() {
     link.click();
     URL.revokeObjectURL(url);
   };
-
-  console.log(import.meta.env.VITE_API_KEY);
-  
 
   return (
     <div style={{ padding: "50px" }}>
