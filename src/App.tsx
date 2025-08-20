@@ -95,6 +95,9 @@ function App() {
     URL.revokeObjectURL(url);
   };
 
+  console.log(import.meta.env.VITE_API_KEY);
+  
+
   return (
     <div style={{ padding: "50px" }}>
       <Card>
