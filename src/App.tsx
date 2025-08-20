@@ -17,7 +17,7 @@ interface IAirport {
 }
 
 const client = new OpenAI({
-  apiKey: import.meta.env.VITE_API_KEY,
+  apiKey: import.meta.env.VITE_AIRPORT_KEY,
   dangerouslyAllowBrowser: true,
 });
 
