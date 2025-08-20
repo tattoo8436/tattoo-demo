@@ -18,7 +18,7 @@ interface IAirport {
 
 const client = new OpenAI({
   apiKey:
-    "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",
+    import.meta.env.VITE_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
