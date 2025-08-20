@@ -21,9 +21,9 @@ const client = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-// function sleep(ms: number) {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function App() {
   const [airports, setAirports] = useState<IAirport[]>([]);
@@ -41,7 +41,7 @@ function App() {
       const res = await fetch("/data/AirportData.json");
       const data: IAirport[] = await res.json();
 
-      const size = 20;
+      const size = 30;
       const loopCount = Math.ceil(data.length / size);
       const translatedData: IAirport[] = [];
 
@@ -73,6 +73,8 @@ function App() {
             name_translations: item.name_translations,
           });
         });
+
+        await sleep(10000);
       }
 
       setAirports(translatedData);
